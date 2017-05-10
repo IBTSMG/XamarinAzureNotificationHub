@@ -9,6 +9,8 @@ namespace AzurePush.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
+        // Refer to : https://docs.microsoft.com/en-us/azure/notification-hubs/xamarin-notification-hubs-ios-push-notification-apns-get-started
+
         private SBNotificationHub Hub { get; set; }
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
