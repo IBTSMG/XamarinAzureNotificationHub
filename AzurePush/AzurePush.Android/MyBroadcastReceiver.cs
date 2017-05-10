@@ -60,6 +60,12 @@ namespace AzurePush.Droid
             }
         }
 
+        /*
+            GcmServiceBase implements methods OnRegistered(), OnUnRegistered(), OnMessage(), OnRecoverableError(), and OnError(). 
+            Our PushHandlerService implementation class must override these methods, and these methods will fire in response to interacting with the notification hub.
+        */
+
+        //Refer to : https://docs.microsoft.com/en-us/azure/notification-hubs/xamarin-notification-hubs-push-notifications-android-gcm
         protected override void OnRegistered(Context context, string registrationId)
         {
             Log.Verbose(MyBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
@@ -80,7 +86,7 @@ namespace AzurePush.Droid
             }
 
             // create tags if you want. we didn't use. create empty tag list.
-            // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+            // Refer to () : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
             var tags = new List<string>() { };
 
             try
