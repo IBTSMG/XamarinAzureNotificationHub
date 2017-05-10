@@ -96,6 +96,7 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
+    <Compile Include="Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -142,7 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AzurePush\AzurePush.csproj">
-      <Project>{d3fa82ad-fb10-4ad6-bec3-0ad20b2d1d2c}</Project>
+      <Project>{582D6411-E1BF-41C3-A766-1EB441362B23}</Project>
       <Name>AzurePush</Name>
     </ProjectReference>
   </ItemGroup>
