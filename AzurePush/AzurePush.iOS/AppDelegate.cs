@@ -34,7 +34,7 @@ namespace AzurePush.iOS
         public override void RegisteredForRemoteNotifications(UIApplication application,
      NSData deviceToken)
         {
-            Hub = new SBNotificationHub(Constants.ConnectionString, Constants.NotificationHubPath);
+            Hub = new SBNotificationHub(App.ListenConnectionString, Constants.NotificationHubPath);
 
             Hub.UnregisterAllAsync(deviceToken, (error) =>
             {
@@ -44,7 +44,9 @@ namespace AzurePush.iOS
                     return;
                 }
 
-                NSSet tags = null; // create tags if you want
+                // create tags if you want
+                // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+                NSSet tags = null;
                 Hub.RegisterNativeAsync(deviceToken, tags, (errorCallback) =>
                 {
                     if (errorCallback != null)

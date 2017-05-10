@@ -60,13 +60,6 @@ namespace AzurePush.Droid
             }
         }
 
-        /*
-
-            GcmServiceBase implements methods OnRegistered(), OnUnRegistered(), OnMessage(), OnRecoverableError(), and OnError(). 
-            Our PushHandlerService implementation class must override these methods, and these methods will fire in response to interacting with the notification hub.
-
-            source:https://docs.microsoft.com/en-us/azure/notification-hubs/xamarin-notification-hubs-push-notifications-android-gcm
-        */
         protected override void OnRegistered(Context context, string registrationId)
         {
             Log.Verbose(MyBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
@@ -86,15 +79,13 @@ namespace AzurePush.Droid
                 Log.Error(MyBroadcastReceiver.TAG, ex.Message);
             }
 
-
-            // create tags if you want. We didn't use.
-            // In the OnRegistered() code above, you should note the ability to specify tags to register for specific messaging channels.
-            //var tags = new List<string>() { };
-            // Hub.Register(registrationId, tags.ToArray());
+            // create tags if you want. we didn't use. create empty tag list.
+            // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+            var tags = new List<string>() { };
 
             try
             {
-                var hubRegistration = Hub.Register(registrationId);
+                var hubRegistration = Hub.Register(registrationId, tags.ToArray());
             }
             catch (Exception ex)
             {
@@ -112,7 +103,6 @@ namespace AzurePush.Droid
             notificationManager.Notify(1, notification);
             dialogNotify(title, desc);
         }
-
         protected void dialogNotify(String title, String message)
         {
             MainActivity.instance.RunOnUiThread(() =>
@@ -129,7 +119,6 @@ namespace AzurePush.Droid
             });
         }
     }
-
     [BroadcastReceiver(Permission = Constants.PERMISSION_GCM_INTENTS)]
     [IntentFilter(new string[] { Constants.INTENT_FROM_GCM_MESSAGE },
          Categories = new string[] { "com.ibtech.xamarinfcmsample" })]
